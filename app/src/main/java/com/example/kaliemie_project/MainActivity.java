@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    private Menu lemenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_connect:
                 Toast.makeText(getApplicationContext(), "clic sur connect", Toast.LENGTH_SHORT).show();
+                menuConnecte();
                 return true;
             case R.id.menu_deconnect:
                 Toast.makeText(getApplicationContext(), "clic sur deconnect", Toast.LENGTH_SHORT).show();
@@ -93,7 +95,11 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-
+    public void menuConnecte(){
+        // Rends visible tous les items sauf : R.id.menu_connect
+        findViewById(R.id.menu_connect).setVisibility(View.INVISIBLE);
+        //findViewById(R.id.menu_deconnect).setVisibility(View.VISIBLE);
+    }
 
 
 }
