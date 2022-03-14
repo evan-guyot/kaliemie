@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.kaliemie_project.MainActivity">
+    <item
+        android:id="@+id/menu_connect"
+        android:icon="@drawable/on"
+        android:title="@string/menu_connexion"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menu_list"
+        android:icon="@drawable/ilist"
+        app:showAsAction="ifRoom"
+        android:visible="false"
+        android:title="@string/menu_list"/>
+
+    <item
+        android:id="@+id/menu_import"
+        android:icon="@drawable/iimport"
+        android:title="@string/menu_import"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_export"
+        android:icon="@drawable/iexport"
+        app:showAsAction="ifRoom"
+        android:visible="false"
+        android:title="@string/menu_export"/>
+    <item
+        android:id="@+id/menu_deconnect"
+        android:icon="@drawable/off"
+        android:title="@string/menu_deconnexion"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+</menu>

@@ -1,0 +1,2 @@
+rootProject.name = "Kaliemie_Project"
+include ':app'

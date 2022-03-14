@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Kaliemie_Project</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="menu_connexion" translatable="true">  Se connecter</string>
+    <string name="menu_list" translatable="true"> Liste des visites</string>
+    <string name="menu_import" translatable="true"> Importer les données</string>
+    <string name="menu_export" translatable="true"> Exporter les données</string>
+    <string name="menu_deconnexion" translatable="true"> Se déconnecter</string>
+    <string name="Bienvenue" translatable="true">Bienvenue</string>
+
+    <string name="strLogin" translatable="true">Login :</string>
+    <string name="strPassword" translatable="true">Password :</string>
+    <string name="strIdentifiant" translatable="true">Identifiant</string>
+    <string name="strPasswordHint" translatable="true">Password</string>
+
+
+</resources>
