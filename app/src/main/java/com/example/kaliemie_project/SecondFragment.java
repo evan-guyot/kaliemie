@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.kaliemie_project.databinding.FragmentSecondBinding;
@@ -28,14 +29,21 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-/*
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+
+        binding.bFragOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                ((MainActivity)getActivity()).menuConnecte();
+                Navigation.findNavController(((MainActivity)getActivity()), R.id.nav_host_fragment_content_main).navigate(R.id.action_SecondFragment_to_thirdFragment);
             }
-        });*/
+        });
+        binding.bFragCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(((MainActivity)getActivity()), R.id.nav_host_fragment_content_main).navigate(R.id.action_SecondFragment_to_FirstFragment);
+            }
+        });
+
     }
 
     @Override
