@@ -2,14 +2,10 @@ package com.example.kaliemie_project;
 
 import android.os.Build;
 import android.os.Bundle;
-
 import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.provider.Settings;
 import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,15 +19,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import androidx.core.app.ActivityCompat;
-
-
 import com.example.kaliemie_project.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int MULTIPLE_PERMISSIONS = 10;
     private List<String> listPermissionsNeeded;
     private boolean permissionOverlayAsked=false;
-    private boolean permissionOK=false;
+    private boolean permissionOverlay=false;
 
     @Override
     public void onStart() {
@@ -54,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
         checkPermissions();
     }
 
+    private boolean permissionOK=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -75,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
     }
 
     @Override
@@ -91,27 +90,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_connect:
-                if(this.permissionOK) {
-                    boolean firstFragActive = (Navigation.findNavController(this, R.id.nav_host_fragment_content_main).getCurrentDestination().getId() == R.id.FirstFragment);
-                    if (firstFragActive) {
-                        Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_FirstFragment_to_SecondFragment);
-                    }
+                Toast.makeText(getApplicationContext(), "click sur connect", Toast.LENGTH_SHORT).show();
+
+                boolean firstFragActive=(Navigation.findNavController(this,R.id.nav_host_fragment_content_main).getCurrentDestination().getId()==R.id.FirstFragment);
+                if (firstFragActive && permissionOK)
+                {
+                    Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_FirstFragment_to_SecondFragment);
                 }
-                else {
-                    if(!Settings.canDrawOverlays(this)){
-
-                        Toast.makeText(getApplicationContext(), "Les overlays sont refusés", Toast.LENGTH_SHORT).show();
-
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                                Uri.parse("package:" + getPackageName()));
-                        startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
-                    }
-
-                    Toast.makeText(getApplicationContext(), "Les permisions sont refusées", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez accepter les permissions", Toast.LENGTH_SHORT).show();
+                    checkPermissions();
                 }
-
-                Toast.makeText(getApplicationContext(), "clic sur connect", Toast.LENGTH_SHORT).show();
                 return true;
+
             case R.id.menu_deconnect:
 
                 boolean thirdFragActive = (Navigation.findNavController(this,R.id.nav_host_fragment_content_main).getCurrentDestination().getId()==R.id.thirdFragment);
@@ -209,19 +201,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void alertmsg(String title, String msg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-        builder.setMessage(msg)
-                .setTitle(title);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                // User clicked OK button
-            }
-        });
+        if (permissionOverlay) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+            builder.setMessage(msg)
+                    .setTitle(title);
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK button
+                }
+            });
 
-        AlertDialog dialog = builder.create();
-        dialog.getWindow().setType(WindowManager.LayoutParams.
-                TYPE_APPLICATION_OVERLAY);
-        dialog.show();
+            AlertDialog dialog = builder.create();
+            dialog.getWindow().setType(WindowManager.LayoutParams.
+                    TYPE_APPLICATION_OVERLAY);
+            dialog.show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(), title.concat(" -->").concat(msg), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE= 5469;
@@ -255,7 +252,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void retourConnexion(StringBuilder sb)
+    {
 
+
+
+
+        try {
+            JSONObject vJSONObject = new JSONObject(sb.toString());
+
+            if(vJSONObject.has("status")){
+                alertmsg("Erreur de connexion", "Login/Password incorrect");
+            }
+            else{
+
+                menuConnecte();
+                Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_SecondFragment_to_thirdFragment);
+
+                String nom = vJSONObject.getString("nom");
+                String prenom = vJSONObject.getString("prenom");
+            }
+
+        }catch (Exception e){
+            alertmsg("retour Connexion", "Erreur de connection".concat(e.getMessage()));
+        }
+
+
+    }
 
 
 }
