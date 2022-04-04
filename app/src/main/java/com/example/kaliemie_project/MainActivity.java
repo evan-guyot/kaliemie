@@ -1,5 +1,6 @@
 package com.example.kaliemie_project;
 
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,6 +25,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -43,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
     private List<String> listPermissionsNeeded;
     private boolean permissionOverlayAsked=false;
     private boolean permissionOverlay=false;
+    private String nomuser = "";
+    private String prenomuser = "";
+    public String getnomuser(){return this.nomuser; }
+    public String getprenomuser(){return this.prenomuser; }
+    private String url;
+    private String[] mesparams;
+    private Async mThreadCon = null;
+    private String idConnect = "";
+    private String passConnect = "";
 
     @Override
     public void onStart() {
@@ -212,8 +224,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
             AlertDialog dialog = builder.create();
-            dialog.getWindow().setType(WindowManager.LayoutParams.
-                    TYPE_APPLICATION_OVERLAY);
+            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             dialog.show();
         }
         else {
@@ -252,10 +263,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void connectUrl(String i, String p){
+
+
+        url =   "https://www.btssio-carcouet.fr/ppe4/public/connect2/"
+                + i
+                +"/"
+                + p
+                +"/infirmiere";
+
+        this.idConnect = i;
+        this.passConnect = p;
+
+        mesparams=new String[3];
+        mesparams[0]="1";
+        mesparams[1]=url;
+        mesparams[2]="GET";
+        mThreadCon = new Async (this);
+        mThreadCon.execute(mesparams);
+
+    }
+
     public void retourConnexion(StringBuilder sb)
     {
-
-
 
 
         try {
@@ -266,18 +296,33 @@ public class MainActivity extends AppCompatActivity {
             }
             else{
 
+                MD5 objMD5 = new MD5();
+
+                addToSharedPrefs(this.idConnect, objMD5.getMd5(this.passConnect));
+
                 menuConnecte();
                 Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_SecondFragment_to_thirdFragment);
 
                 String nom = vJSONObject.getString("nom");
                 String prenom = vJSONObject.getString("prenom");
+
+                this.nomuser = nom;
+                this.prenomuser = prenom;
+
             }
 
         }catch (Exception e){
             alertmsg("retour Connexion", "Erreur de connection".concat(e.getMessage()));
         }
+    }
 
+    public void addToSharedPrefs(String name, String value){
+        SharedPreferences myPrefs = this.getSharedPreferences("mesvariablesglobales", 0);
+        SharedPreferences.Editor prefsEditor = myPrefs.edit();
 
+        prefsEditor.putString(name, value);
+
+        prefsEditor.commit();
     }
 
 

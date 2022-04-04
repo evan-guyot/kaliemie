@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/nomF3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/prenomF3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"

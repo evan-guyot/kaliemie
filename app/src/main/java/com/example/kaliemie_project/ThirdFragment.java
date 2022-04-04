@@ -1,12 +1,17 @@
 package com.example.kaliemie_project;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,12 +58,34 @@ public class ThirdFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+        /*
+        nomUser.setText(nomUser.getText(), TextView.BufferType.EDITABLE);
+        EditText prenomUser = (EditText)getView().findViewById(R.id.etFragId);
+        prenomUser.setText(prenomUser.getText(), TextView.BufferType.EDITABLE);
+*/
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_third, container, false);
+    }
+
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        TextView textViewPrenom = (TextView) getView().findViewById(R.id.nomF3);
+        textViewPrenom.setText(((MainActivity)getActivity()).getnomuser());
+
+        TextView textViewNom = (TextView) getView().findViewById(R.id.prenomF3);
+        textViewNom.setText(((MainActivity)getActivity()).getprenomuser());
+
     }
 }

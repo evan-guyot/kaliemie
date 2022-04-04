@@ -1,5 +1,6 @@
 package com.example.kaliemie_project;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,19 +44,8 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                ((MainActivity) getActivity()).connectUrl(id.getText().toString(), pass.getText().toString());
 
-                url =   "https://www.btssio-carcouet.fr/ppe4/public/connect2/"
-                        + id.getText().toString()
-                        +"/"
-                        + id.getText().toString()
-                        +"/infirmiere";
-
-                mesparams=new String[3];
-                mesparams[0]="1";
-                mesparams[1]=url;
-                mesparams[2]="GET";
-                mThreadCon = new Async ((MainActivity)getActivity());
-                mThreadCon.execute(mesparams);
             }
         });
         binding.bFragCancel.setOnClickListener(new View.OnClickListener() {
