@@ -39,7 +39,7 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                ((MainActivity) getActivity()).connectUrl(id.getText().toString(), pass.getText().toString());
+                ((MainActivity) getActivity()).testMotDePasse(id.getText().toString(), pass.getText().toString());
 
             }
         });
