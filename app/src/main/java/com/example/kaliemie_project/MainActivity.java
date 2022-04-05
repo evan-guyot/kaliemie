@@ -263,30 +263,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void connectUrl(String i, String p){
+    public void testMotDePasse(String vid, String vmp){
 
 
-        url =   "https://www.btssio-carcouet.fr/ppe4/public/connect2/"
-                + i
-                +"/"
-                + p
-                +"/infirmiere";
 
-        this.idConnect = i;
-        this.passConnect = p;
+        SharedPreferences myPrefs = this.getSharedPreferences("mesvariablesglobales", 0);
 
-        mesparams=new String[3];
-        mesparams[0]="1";
-        mesparams[1]=url;
-        mesparams[2]="GET";
-        mThreadCon = new Async (this);
-        mThreadCon.execute(mesparams);
+        MD5 passMD5 = new MD5();
 
+        if(myPrefs.getString("id","").equals(vid) && myPrefs.getString("password","").equals(passMD5.getMd5(vmp))){
+
+            Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_SecondFragment_to_thirdFragment);
+            menuConnecte();
+        }
+        else {
+            url = "https://www.btssio-carcouet.fr/ppe4/public/connect2/"
+                    + vid
+                    + "/"
+                    + vmp
+                    + "/infirmiere";
+
+            this.idConnect = vid;
+            this.passConnect = vmp;
+
+            mesparams = new String[3];
+            mesparams[0] = "1";
+            mesparams[1] = url;
+            mesparams[2] = "GET";
+            mThreadCon = new Async(this);
+            mThreadCon.execute(mesparams);
+        }
     }
 
     public void retourConnexion(StringBuilder sb)
     {
-
 
         try {
             JSONObject vJSONObject = new JSONObject(sb.toString());
@@ -298,9 +308,12 @@ public class MainActivity extends AppCompatActivity {
 
                 MD5 objMD5 = new MD5();
 
-                addToSharedPrefs(this.idConnect, objMD5.getMd5(this.passConnect));
+                addToSharedPrefs("id", this.idConnect);
+                addToSharedPrefs("password", objMD5.getMd5(this.passConnect));
+                addToSharedPrefs("informations", sb.toString());
 
                 menuConnecte();
+
                 Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_SecondFragment_to_thirdFragment);
 
                 String nom = vJSONObject.getString("nom");
@@ -308,7 +321,6 @@ public class MainActivity extends AppCompatActivity {
 
                 this.nomuser = nom;
                 this.prenomuser = prenom;
-
             }
 
         }catch (Exception e){
@@ -319,9 +331,7 @@ public class MainActivity extends AppCompatActivity {
     public void addToSharedPrefs(String name, String value){
         SharedPreferences myPrefs = this.getSharedPreferences("mesvariablesglobales", 0);
         SharedPreferences.Editor prefsEditor = myPrefs.edit();
-
         prefsEditor.putString(name, value);
-
         prefsEditor.commit();
     }
 

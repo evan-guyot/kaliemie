@@ -19,11 +19,6 @@ import com.example.kaliemie_project.databinding.FragmentSecondBinding;
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
-    private Async mThreadCon = null;
-    private EditText login;
-    private EditText pass;
-    private String url;
-    private String[] mesparams;
 
     @Override
     public View onCreateView(
