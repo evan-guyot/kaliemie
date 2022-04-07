@@ -48,13 +48,20 @@ public class MainActivity extends AppCompatActivity {
     private boolean permissionOverlay=false;
     private String nomuser = "";
     private String prenomuser = "";
-    public String getnomuser(){return this.nomuser; }
-    public String getprenomuser(){return this.prenomuser; }
     private String url;
     private String[] mesparams;
     private Async mThreadCon = null;
     private String idConnect = "";
     private String passConnect = "";
+    private Intent i;
+    private boolean permissionOK=false;
+
+    public String getnomuser(){return this.nomuser; }
+    public String getprenomuser(){return this.prenomuser; }
+
+    public boolean getPermissionOverlay(){
+        return this.permissionOverlay;
+    }
 
     @Override
     public void onStart() {
@@ -66,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         checkPermissions();
     }
 
-    private boolean permissionOK=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_connect:
                 Toast.makeText(getApplicationContext(), "click sur connect", Toast.LENGTH_SHORT).show();
-
                 boolean firstFragActive=(Navigation.findNavController(this,R.id.nav_host_fragment_content_main).getCurrentDestination().getId()==R.id.FirstFragment);
                 if (firstFragActive && permissionOK)
                 {
@@ -131,6 +136,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "clic sur list", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_import:
+                i = new Intent(getApplicationContext(), ActImport.class);
+                i.putExtra("permOverlayOk", permissionOverlay);
+                startActivity(i);
                 Toast.makeText(getApplicationContext(), "clic sur import", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_export:

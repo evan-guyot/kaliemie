@@ -24,5 +24,8 @@
     <string name="strIdentifiant" translatable="true">Identifiant</string>
     <string name="strPasswordHint" translatable="true">Password</string>
 
+    <string name="importbtn" translatable="true">Import</string>
+    <string name="importadvert" translatable="true">Cette action entrainera une suppression de toutes les visites stockées sur le téléphone</string>
+
 
 </resources>

@@ -42,6 +42,7 @@ public class SecondFragment extends Fragment {
                 ((MainActivity) getActivity()).testMotDePasse(id.getText().toString(), pass.getText().toString());
 
             }
+
         });
         binding.bFragCancel.setOnClickListener(new View.OnClickListener() {
             @Override

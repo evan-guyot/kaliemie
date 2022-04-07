@@ -15,6 +15,9 @@ public class Visite {
     private Date date_reelle;
     private String compte_rendu_infirmiere;
 
+    public Visite() {
+    }
+
     public Visite(int vid,int vpatient,int vinfirmiere,Date vdate_prevue ,int vduree,String vcompte_rendu_patient) {
         id=vid;
         patient=vpatient;

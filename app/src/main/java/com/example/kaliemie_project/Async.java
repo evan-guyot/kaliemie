@@ -50,6 +50,9 @@ import org.json.JSONObject;
                     if (numAppel==1) {
                         ((MainActivity) activityAppelante.get()).retourConnexion(stringBuilder);
                     }
+                    if (numAppel==2) {
+                        ((ActImport) activityAppelante.get()).retourImport(stringBuilder);
+                    }
                 } else
                     Toast.makeText(activityAppelante.get(), "Fin ko",
                             Toast.LENGTH_SHORT).show();
