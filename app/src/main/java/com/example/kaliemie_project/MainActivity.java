@@ -129,10 +129,11 @@ public class MainActivity extends AppCompatActivity {
                     Navigation.findNavController(this, R.id.nav_host_fragment_content_main).navigate(R.id.action_thirdFragment_to_FirstFragment);
                     menuDeconnecte();
                 }
-
                 Toast.makeText(getApplicationContext(), "clic sur deconnect", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_list:
+                i = new Intent(getApplicationContext(), AfficheListeVisite.class);
+                startActivity(i);
                 Toast.makeText(getApplicationContext(), "clic sur list", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_import:

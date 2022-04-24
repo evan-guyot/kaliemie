@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AfficheVisite">
+
+    <LinearLayout
+        android:id="@+id/l0"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/t1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Visite : "
+            android:textColor="#f20f0f"
+            android:textIsSelectable="false"
+            android:textSize="15dp"
+            android:textStyle="normal|bold|italic" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/l0">
+
+        <TextView
+            android:id="@+id/visiteDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="Date prévue :" />
+
+        <TextView
+            android:id="@+id/visiteDatePrevue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+        <TextView
+            android:id="@+id/tvvisiteDatePrevue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="Date Réelle :" />
+
+        <EditText
+            android:id="@+id/visiteDateReelle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Date Réelle"
+            android:paddingLeft="5dip"
+            android:textSize='10sp'
+            tools:ignore="TouchTargetSizeCheck" />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/l11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/l1">
+
+        <TextView
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Patient : "
+            android:textColor="#f20f0f"
+            android:textIsSelectable="false"
+            android:textSize="15dp"
+            android:textStyle="normal|bold|italic" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/l11">
+
+        <TextView
+            android:id="@+id/visiteNom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/visitePrenom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/l2">
+
+        <TextView
+            android:id="@+id/visitead1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/visitecp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/visiteville"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/l3">
+
+        <TextView
+            android:id="@+id/visitenumport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/visitenumfixe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="5dip"
+            android:text="TextView" />
+
+        <Button
+            android:id="@+id/visitemap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize='10sp'
+            android:text="Map" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/l41"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/l4">
+
+        <TextView
+            android:id="@+id/t3"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Commentaire : "
+            android:textColor="#f20f0f"
+            android:textIsSelectable="false"
+            android:textSize="15dp"
+            android:textStyle="normal|bold|italic" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/l5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/l41">
+
+        <EditText
+            android:id="@+id/visitecommentaire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="5"
+            android:hint="Commentaire Visite"
+            android:inputType="textMultiLine"
+            android:lines="3" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/l5">
+
+        <TextView
+            android:id="@+id/textViewSoin"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            android:background="#ffffff"
+            android:gravity="center"
+            android:text="Soins : "
+            android:textColor="#f20f0f"
+            android:textIsSelectable="false"
+            android:textSize="15dp"
+            android:textStyle="normal|bold|italic" />
+
+        <ListView
+            android:id="@+id/lvListeSoins"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="1dp"
+            android:divider="#000000"
+            android:dividerHeight="1dp"
+            android:scrollingCache="true"
+            android:smoothScrollbar="true"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSoin" >
+
+
+        </ListView>
+
+        <Button
+            android:id="@+id/visitesave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize='10sp'
+            android:text="Save" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

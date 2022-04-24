@@ -22,13 +22,14 @@
 
     <TextView
         android:id="@+id/importadvert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="287dp"
+        android:layout_height="304dp"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="177dp"
         android:text="@string/importadvert"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/importbtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
