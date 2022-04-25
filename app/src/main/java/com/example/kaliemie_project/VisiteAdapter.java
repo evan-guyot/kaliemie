@@ -17,9 +17,13 @@ public class VisiteAdapter extends BaseAdapter {
     private List<Visite> listVisite;
     private LayoutInflater layoutInflater; //Cet attribut a pour mission de charger notre fichier XML de la vue pour l'item.
     private DateFormat df = new DateFormat();
+    private Context ct;
+    private Modele modele;
 
     public VisiteAdapter(Context context, List<Visite> vListVisite) {
         super();
+
+        ct = context;
         layoutInflater = LayoutInflater.from(context);
         listVisite = vListVisite;
     }
@@ -40,6 +44,12 @@ public class VisiteAdapter extends BaseAdapter {
         return listVisite.get(position).getId();
     }
 
+    private class ViewHolder {
+        TextView textViewVisite;
+        TextView textViewPatient;
+        TextView textViewDate;
+        TextView textViewDuree;
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -62,6 +72,8 @@ public class VisiteAdapter extends BaseAdapter {
         }
         /*****Affichage des propriétés dans la ligne de la listView ****/
         holder.textViewVisite.setText("Visite ID : " + listVisite.get(position).getId() + ", ");
+        modele = new Modele(ct);
+        //Patient patient = modele.trouvePatient( listVisite.get(position).getPatient());
         holder.textViewPatient.setText("Avec le patient : " + listVisite.get(position).getPatient() + ", ");
         holder.textViewDate.setText("Date :"+ df.format("dd/MM/yyyy",listVisite.get(position).getDate_reelle()).toString().concat(" à ").concat(df.format("HH:mm",listVisite.get(position).getDate_reelle()).toString()));
         holder.textViewDuree.setText("Durée : "+listVisite.get(position).getDuree()+" min");
@@ -79,6 +91,16 @@ public class VisiteAdapter extends BaseAdapter {
         holder.textViewDate.setTextSize(17);
         holder.textViewDuree.setTextSize(17);
 
+
+        /*****Affichage des propriétés dans la ligne de la listView ****/
+    /*  holder.textViewVisite.setText("Visite ID : " + listVisite.get(position).getId() + ", ");
+        modele = new Modele(ct);
+        Patient patient = modele.trouvePatient( listVisite.get(position).getPatient());
+        holder.textViewPatient.setText("Avec le patient : " + patient.getPrenom() + patient.getNom());
+        holder.textViewPatient.setText("Avec le patient : " + listVisite.get(position).getPatient() + ", "); //+ listPatient.get(position).getPrenom());//listPatient.get(position).getNom()+ ", " + listePatient.get(position).getPrenom() + ", " );
+        holder.textViewDate.setText("Date :"+ df.format("dd/MM/yyyy",listVisite.get(position).getDate_reelle()).toString().concat(" à ").concat(df.format("HH:mm",listVisite.get(position).getDate_reelle()).toString()));
+        holder.textViewDuree.setText("Durée : "+listVisite.get(position).getDuree()+" min");
+       */
 
         return convertView;
     }

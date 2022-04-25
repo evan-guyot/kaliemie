@@ -136,7 +136,6 @@ public class Modele {
 
 
 
-
     /*
      *   Méthodes Spécifiques à la classe Soin
      */

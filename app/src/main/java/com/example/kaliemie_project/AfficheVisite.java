@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.db4o.marshall.Context;
 
 import java.text.DateFormat;
 import java.text.FieldPosition;
@@ -23,6 +26,7 @@ import java.util.List;
 import java.util.Date;
 
 
+
 public class AfficheVisite extends AppCompatActivity {
 
     private ListView listView;
@@ -32,19 +36,7 @@ public class AfficheVisite extends AppCompatActivity {
     private Modele vmodel;
     private Calendar myCalendar = Calendar.getInstance();
     private EditText datereelle;
-    private DateFormat df = new DateFormat() {
-        @NonNull
-        @Override
-        public StringBuffer format(@NonNull Date date, @NonNull StringBuffer stringBuffer, @NonNull FieldPosition fieldPosition) {
-            return null;
-        }
 
-        @Nullable
-        @Override
-        public Date parse(@NonNull String s, @NonNull ParsePosition parsePosition) {
-            return null;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,17 +51,14 @@ public class AfficheVisite extends AppCompatActivity {
 
         laVisite = vmodel.trouveVisite(vid);
 
-
-
         TextView tvDatePrevue = (TextView) findViewById(R.id.visiteDatePrevue);
         tvDatePrevue.setText(laVisite.getDate_prevue().toString());
 
 
+
         try {
+
             Patient lePatient = vmodel.trouvePatient(laVisite.getPatient());
-
-
-
             TextView tvNom = (TextView) findViewById(R.id.visiteNom);
             tvNom.setText(lePatient.getNom());
             TextView tvPrenom = (TextView) findViewById(R.id.visitePrenom);
@@ -156,13 +145,5 @@ public class AfficheVisite extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
-
-
-
-
-
-
-
     }
 }

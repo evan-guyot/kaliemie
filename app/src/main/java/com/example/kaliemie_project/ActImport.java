@@ -29,7 +29,13 @@ public class ActImport extends AppCompatActivity {
     private boolean soinsAjoute = false;
 
     private String[] mesparams;
+    private String[] mesparamsSoin;
+    private String[] mesparamsPatient;
+    private String[] mesparamsVisite;
     private Async mThreadCon = null;
+    private Async mThreadSoin = null;
+    private Async mThreadPatient = null;
+    private Async mThreadVisite = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +83,7 @@ public class ActImport extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), title.concat(" -->").concat(msg), Toast.LENGTH_SHORT).show();
         }
     }
-
+/*
     public void retourImport(StringBuilder sb)
     {
         try {
@@ -107,8 +113,8 @@ public class ActImport extends AppCompatActivity {
                     mesparams[1] = patient_url;
                     mesparams[2] = "GET";
 
-                    Async mThreadCon = new Async(this);
-
+                    Async mThreadSoin = new Async(this);
+                    mThreadSoin.execute(mesparams);
                     soinsAjoute = true;
                 }
 
@@ -124,8 +130,8 @@ public class ActImport extends AppCompatActivity {
                     mesparams[1] = patient_url;
                     mesparams[2] = "GET";
 
-                    Async mThreadCon = new Async(this);
-
+                    Async mThreadPatient = new Async(this);
+                    mThreadPatient.execute(mesparams);
                 }
 
                 //pour chaque visite
@@ -137,7 +143,8 @@ public class ActImport extends AppCompatActivity {
                 mesparams[2] = "GET";
 
 
-                Async mThreadCon = new Async(this);
+                Async mThreadVisite = new Async(this);
+                mThreadVisite.execute(mesparams);
 
             }
             vmodel.deleteVisite();
@@ -222,6 +229,150 @@ public class ActImport extends AppCompatActivity {
             Log.d("Soin", "erreur json" + e.getMessage());
 
         }
+    }*/
+
+
+
+
+    public void retourImport(StringBuilder sb)
+    {
+        //alertmsg("retour Import", sb.toString());
+
+        try {
+            Modele vmodel = new Modele(this);
+            JsonElement json = new JsonParser().parse(sb.toString());
+            JsonArray varray = json.getAsJsonArray();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+            ArrayList<Visite> listeVisite = new ArrayList<Visite>();
+            ArrayList<Integer> lesPatients = new ArrayList<Integer>();
+            vmodel.deletePatient();
+            vmodel.deleteVisite();
+            vmodel.deleteVisiteSoin();
+            for (JsonElement obj : varray) {
+                Visite visite = gson.fromJson(obj.getAsJsonObject(), Visite.class);
+                visite.setCompte_rendu_infirmiere("");
+                visite.setDate_reelle(visite.getDate_prevue());
+                Integer p = visite.getPatient();
+                Integer v = visite.getId();
+                if(!lesPatients.contains(p)) {
+                    lesPatients.add(p);
+                }
+                listeVisite.add(visite);
+
+            }
+            vmodel.addVisite(listeVisite);
+            for (Integer lint:lesPatients
+            ) {
+
+
+                String urlImpPatient = "https://www.btssio-carcouet.fr/ppe4/public/personne/"
+                        .concat(lint.toString());
+                mesparamsPatient = new String[3];
+                mesparamsPatient[0] = "3";
+                mesparamsPatient[1] = urlImpPatient;
+                mesparamsPatient[2] = "GET";
+                mThreadPatient = new Async(this);
+                mThreadPatient.execute(mesparamsPatient);
+            }
+            for (Visite v:listeVisite
+            ) {
+                String urlImpVisiteSoins = "https://www.btssio-carcouet.fr/ppe4/public/visitesoins/"
+                        .concat(String.valueOf(v.getId()));
+                mesparamsVisite = new String[3];
+                mesparamsVisite[0] = "4";
+                mesparamsVisite[1] = urlImpVisiteSoins;
+                mesparamsVisite[2] = "GET";
+                mThreadVisite = new Async(this);
+                mThreadVisite.execute(mesparamsVisite);
+            }
+            if(vmodel.listeSoin().size() == 0) {
+                String urlImpSoins = "https://www.btssio-carcouet.fr/ppe4/public/soins/";
+                mesparamsSoin = new String[3];
+                mesparamsSoin[0] = "5";
+                mesparamsSoin[1] = urlImpSoins;
+                mesparamsSoin[2] = "GET";
+                mThreadSoin = new Async(this);
+                mThreadSoin.execute(mesparamsSoin);
+            }
+            //mThreadImpPatients.execute(mesparamsP);
+            //mThreadImpPatients.execute(mesparamsVS);
+            //mThreadImpPatients.execute(mesparamsS);
+
+
+
+            alertmsg("Retour", "Vos informations ont bien été importé avec succès !");
+            alertmsg("retour Import", sb.toString());
+        }
+        catch (Exception e) {
+            alertmsg("Erreur retour import", e.getMessage());
+        }
     }
+
+    public void retourImportPatient(StringBuilder sb) {
+        //alertmsg("retour ImportPatient", sb.toString());
+        try {
+            Modele vmodel = new Modele(this);
+            JsonElement json = new JsonParser().parse(sb.toString());
+            JsonArray varray = json.getAsJsonArray();
+            Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer()).serializeNulls().create();
+            ArrayList<Patient> listePatient = new ArrayList<Patient>();
+            for (JsonElement obj : varray) {
+                Patient unPatient = gson.fromJson(obj.getAsJsonObject(), Patient.class);
+                listePatient.add(unPatient);
+            }
+
+            vmodel.addPatient(listePatient);
+            //alertmsg("Retour Patient", "Les informations du patient ont bien été importé !");
+            //alertmsg("retour Import Patient", sb.toString());
+        } catch (JsonParseException e) {
+            Log.d("Patient", "erreur json" + e.getMessage());
+        }
+    }
+
+    public void retourImportSoinsVisite(StringBuilder sb) {
+        //alertmsg("retour ImportPatient", sb.toString());
+        try {
+            Modele vmodel = new Modele(this);
+            JsonElement json = new JsonParser().parse(sb.toString());
+            JsonArray varray = json.getAsJsonArray();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd HH:mm:ss").serializeNulls().create();
+            ArrayList<VisiteSoin> listeVisiteSoins = new ArrayList<VisiteSoin>();
+            for (JsonElement obj : varray) {
+                VisiteSoin uneVisiteSoin = gson.fromJson(obj.getAsJsonObject(), VisiteSoin.class);
+                listeVisiteSoins.add(uneVisiteSoin);
+            }
+            vmodel.addVisiteSoin(listeVisiteSoins);
+            //alertmsg("Retour", "Les informations visite soins ont bien été importé !");
+            //alertmsg("retour ImportVisiteSoins", sb.toString());
+        } catch (JsonParseException e) {
+            Log.d("VisiteSoin", "erreur json" + e.getMessage());
+        }
+    }
+
+    public void retourImportSoins(StringBuilder sb) {
+        //alertmsg("retour ImportPatient", sb.toString());
+        try {
+            Modele vmodel = new Modele(this);
+            JsonElement json = new JsonParser().parse(sb.toString());
+            JsonArray varray = json.getAsJsonArray();
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd HH:mm:ss").serializeNulls().create();
+            ArrayList<Soin> listeSoins = new ArrayList<Soin>();
+            for (JsonElement obj : varray) {
+                Soin unSoin = gson.fromJson(obj.getAsJsonObject(), Soin.class);
+                listeSoins.add(unSoin);
+            }
+            vmodel.addSoin(listeSoins);
+            //alertmsg("Retour", "Les informations Soins ont bien été importé !");
+            //alertmsg("retour Import", sb.toString());
+        } catch (JsonParseException e) {
+            Log.d("Soin", "erreur json" + e.getMessage());
+        }
+    }
+
+
+
+
+
+
 
 }
