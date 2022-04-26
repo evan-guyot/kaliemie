@@ -73,10 +73,11 @@ public class VisiteAdapter extends BaseAdapter {
         /*****Affichage des propriétés dans la ligne de la listView ****/
         holder.textViewVisite.setText("Visite ID : " + listVisite.get(position).getId() + ", ");
         modele = new Modele(ct);
-        //Patient patient = modele.trouvePatient( listVisite.get(position).getPatient());
-        holder.textViewPatient.setText("Avec le patient : " + listVisite.get(position).getPatient() + ", ");
+        Patient patient = modele.trouvePatient( listVisite.get(position).getPatient());
+        holder.textViewPatient.setText("Avec le patient : " + patient.getPrenom() + patient.getNom());
         holder.textViewDate.setText("Date :"+ df.format("dd/MM/yyyy",listVisite.get(position).getDate_reelle()).toString().concat(" à ").concat(df.format("HH:mm",listVisite.get(position).getDate_reelle()).toString()));
         holder.textViewDuree.setText("Durée : "+listVisite.get(position).getDuree()+" min");
+
 
         /********* COULEURS DU TEXTE DE LA LISTVIEW ******************/
         holder.textViewVisite.setTextColor(Color.BLACK);
@@ -92,15 +93,6 @@ public class VisiteAdapter extends BaseAdapter {
         holder.textViewDuree.setTextSize(17);
 
 
-        /*****Affichage des propriétés dans la ligne de la listView ****/
-    /*  holder.textViewVisite.setText("Visite ID : " + listVisite.get(position).getId() + ", ");
-        modele = new Modele(ct);
-        Patient patient = modele.trouvePatient( listVisite.get(position).getPatient());
-        holder.textViewPatient.setText("Avec le patient : " + patient.getPrenom() + patient.getNom());
-        holder.textViewPatient.setText("Avec le patient : " + listVisite.get(position).getPatient() + ", "); //+ listPatient.get(position).getPrenom());//listPatient.get(position).getNom()+ ", " + listePatient.get(position).getPrenom() + ", " );
-        holder.textViewDate.setText("Date :"+ df.format("dd/MM/yyyy",listVisite.get(position).getDate_reelle()).toString().concat(" à ").concat(df.format("HH:mm",listVisite.get(position).getDate_reelle()).toString()));
-        holder.textViewDuree.setText("Durée : "+listVisite.get(position).getDuree()+" min");
-       */
 
         return convertView;
     }

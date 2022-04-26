@@ -37,11 +37,6 @@ public class AfficheListeVisite extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AfficheVisite.class);
                 Bundle bundle = new Bundle();
                 intent.putExtra("vid", listeVisite.get(position).getId());
-                intent.putExtra("vpatient", listeVisite.get(position).getPatient());
-                intent.putExtra("vinfirmiere", listeVisite.get(position).getInfirmiere());
-                intent.putExtra("vdate_prevue_string", listeVisite.get(position).getDate_prevue().toString());
-                intent.putExtra("vduree", listeVisite.get(position).getDuree());
-                intent.putExtra("vcompte_rendu_patient", listeVisite.get(position).getCompte_rendu_patient());
                 intent.putExtras(bundle);
                 startActivity(intent);
 
