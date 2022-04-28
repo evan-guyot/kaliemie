@@ -144,9 +144,7 @@ public class ActImport extends AppCompatActivity {
                 mThreadSoin = new Async(this);
                 mThreadSoin.execute(mesparamsSoin);
             }
-            //mThreadImpPatients.execute(mesparamsP);
-            //mThreadImpPatients.execute(mesparamsVS);
-            //mThreadImpPatients.execute(mesparamsS);
+
 
 
 

@@ -39,30 +39,50 @@ public class SoinAdapter extends BaseAdapter{
 
 
     private class ViewHolder {
-        public View checkRealise;
-        TextView textViewVisite;
-        TextView textViewPatient;
-        TextView textViewDate;
-        TextView textViewDuree;
+        public CheckBox checkRealise;
+        TextView TextViewSoin;
     }
+
+
 
     @Override
     public int getCount() {
-        return 0;
+        return listSoin.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return listSoin.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return listSoin.get(position).getId_soins();
     }
 
+
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View view, ViewGroup parent) {
+
+        ViewHolder holder;
+        if (view == null){
+            holder = new ViewHolder();
+            view = layoutInflater.inflate(R.layout.vueunevisite, null);
+            holder.checkRealise = (CheckBox) view.findViewById(R.id.vuesoinsrealise);
+            holder.TextViewSoin = (TextView) view.findViewById(R.id.vuesoinslibel);
+            view.setTag(holder);
+        }
+        else
+        {
+            holder = (ViewHolder) view.getTag();
+        }
+
+        Soin soins = vmodel.trouveSoin(listSoin.get(position).getId_categ_soins(),listSoin.get(position).getId_type_soins(), listSoin.get(position).getId_soins());
+        if(listSoin.get(position).isRealise()) {
+            holder.checkRealise.setChecked(true);
+        }
+        holder.TextViewSoin.setText(soins.getLibel());
 
         holder.checkRealise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +93,9 @@ public class SoinAdapter extends BaseAdapter{
             }
         });
 
-
-        return null;
+        return view;
     }
+
 
 
 }

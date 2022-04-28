@@ -22,7 +22,6 @@ public class VisiteAdapter extends BaseAdapter {
 
     public VisiteAdapter(Context context, List<Visite> vListVisite) {
         super();
-
         ct = context;
         layoutInflater = LayoutInflater.from(context);
         listVisite = vListVisite;

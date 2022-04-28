@@ -85,15 +85,6 @@ import org.json.JSONObject;
                     urlConnection.setDoOutput(true);
                     urlConnection.setRequestMethod("POST");//ou put ou delete selon le web service
                     OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream());
-                    //selon l'activity appelante on peut passer des paramètres en JSON exemple util pour export en les récupérant via les param
-                    /*if (numAppel==1){
-                        // Création objet jsonn clé valeur
-                        JSONObject jsonParam = new JSONObject();
-                        jsonParam.put("xxxx", xxxx);
-                        jsonParam.put("xxxx", xxxx);
-                        out.write(jsonParam.toString());
-                        out.flush();
-                    }*/
                     out.close();
                 }
                 else
