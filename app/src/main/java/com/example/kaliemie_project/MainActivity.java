@@ -145,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_export:
                 Toast.makeText(getApplicationContext(), "clic sur export", Toast.LENGTH_SHORT).show();
                 return true;
+            case R.id.menu_patients:
+                i = new Intent(getApplicationContext(), AfficheListeClients.class);
+                startActivity(i);
+                Toast.makeText(getApplicationContext(), "clic sur export", Toast.LENGTH_SHORT).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

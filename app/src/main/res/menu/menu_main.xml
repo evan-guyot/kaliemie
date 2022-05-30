@@ -33,6 +33,9 @@
         android:title="@string/menu_deconnexion"
         android:visible="false"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_patients"
+        android:title="@string/menu_patients" />
     <!--
     <item
         android:id="@+id/action_settings"

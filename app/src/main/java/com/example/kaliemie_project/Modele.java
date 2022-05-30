@@ -43,6 +43,7 @@ public class Modele {
         return listeVisite;
     }
 
+
     // trouveVisite  qui permet de renvoyer une instance de Visite à partir de son identifiant ;
     public Visite trouveVisite (int id) {
         open();
@@ -132,7 +133,17 @@ public class Modele {
         dataBase.close();
     }
 
-
+    // listeClient retourne la liste de tous les soins
+    public ArrayList<Patient> listePatient() {
+        open();
+        ArrayList<Patient> listePatients = new ArrayList<Patient>();
+        ObjectSet<Patient> result = dataBase.queryByExample(Patient.class);
+        while (result.hasNext()) {
+            listePatients.add(result.next());
+        }
+        dataBase.close();
+        return listePatients;
+    }
 
 
 

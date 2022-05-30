@@ -17,6 +17,7 @@
     <string name="menu_import" translatable="true"> Importer les données</string>
     <string name="menu_export" translatable="true"> Exporter les données</string>
     <string name="menu_deconnexion" translatable="true"> Se déconnecter</string>
+    <string name="menu_patients" translatable="true"> Liste des patients</string>
     <string name="Bienvenue" translatable="true">Bienvenue</string>
 
     <string name="strLogin" translatable="true">Login :</string>

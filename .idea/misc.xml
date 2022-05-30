@@ -10,6 +10,16 @@
         <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie/app/src/main/res/menu/menu_main.xml" value="0.3625" />
         <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.28854166666666664" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/activity_act_import.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/activity_affiche_liste_clients.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/activity_affiche_liste_visite.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/activity_affiche_visite.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/fragment_third.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/layout_vuepatient.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/layout_vueunevisite.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/layout_vuevisite.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/layout/vueunevisite.xml" value="0.276268115942029" />
+        <entry key="..\:/Users/Evan/AndroidStudioProjects/kaliemie_bts/app/src/main/res/menu/menu_main.xml" value="0.3625" />
       </map>
     </option>
   </component>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AfficheListeVisite">
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:background="#ffffff"
         android:gravity="center"
-        android:text="Liste des Visites : "
+        android:text="Liste des Clients : "
         android:textColor="#f20f0f"
         android:textIsSelectable="false"
         android:textSize="35dp"
@@ -24,26 +24,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvNombreVisites"
-        android:layout_width="96dp"
-        android:layout_height="54dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="16dp"
-        android:background="#ffffff"
-        android:gravity="center"
-        android:textColor="#f20f0f"
-        android:textIsSelectable="false"
-        android:textSize="12sp"
-        android:textStyle="normal|bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ListView
-        android:id="@+id/lvListe"
+        android:id="@+id/lvListeClients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -51,6 +33,6 @@
         android:divider="#000000"
         android:dividerHeight="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

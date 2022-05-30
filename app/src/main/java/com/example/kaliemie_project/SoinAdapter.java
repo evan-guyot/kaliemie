@@ -3,9 +3,7 @@ package com.example.kaliemie_project;
 
 
 import android.content.Context;
-import android.graphics.Color;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +11,6 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.widget.BaseAdapter;
 
 import java.util.List;
 
@@ -70,7 +64,7 @@ public class SoinAdapter extends BaseAdapter{
             holder = new ViewHolder();
             view = layoutInflater.inflate(R.layout.vueunevisite, null);
             holder.checkRealise = (CheckBox) view.findViewById(R.id.vuesoinsrealise);
-            holder.TextViewSoin = (TextView) view.findViewById(R.id.vuesoinslibel);
+            holder.TextViewSoin = (TextView) view.findViewById(R.id.vuepatient);
             view.setTag(holder);
         }
         else

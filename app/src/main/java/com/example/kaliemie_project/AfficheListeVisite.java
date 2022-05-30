@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.util.List;
 
@@ -29,6 +31,13 @@ public class AfficheListeVisite extends AppCompatActivity {
         VisiteAdapter visiteAdapter = new VisiteAdapter(this, listeVisite);
         listView.setAdapter(visiteAdapter);
 
+        TextView nombreVisite;
+        nombreVisite= (TextView) findViewById(R.id.tvNombreVisites);
+        nombreVisite.setText(Integer.toString(listeVisite.size())
+        +
+                " visite(s)"
+        );
+
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
@@ -39,13 +48,12 @@ public class AfficheListeVisite extends AppCompatActivity {
                 intent.putExtra("vid", listeVisite.get(position).getId());
                 intent.putExtras(bundle);
                 startActivity(intent);
-
-
-
-
-
             }
         });
+
+
+
+
 
     }
 }
